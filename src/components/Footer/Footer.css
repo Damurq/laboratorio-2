@@ -1,0 +1,79 @@
+footer {
+    padding-top: 2.5rem;
+    font-size: 0.8rem;
+}
+
+.footer-elements {
+    display: flex;
+}
+
+.footer-elements .menu-options-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-elements li {
+    margin: 0.7rem 0;
+}
+
+.footer-elements .menu-options__element--footer {
+    font-size: 0.8rem;
+}
+
+div h3.text-dark {
+    margin: 0;
+    padding: 1.5rem;
+}
+
+.footerSection--nav {
+    margin: 0 7rem;
+}
+
+.footerSection--SocialMedia {
+    margin: 0 auto;
+}
+
+.footerSection--contact {
+    margin: 0 3rem;
+}
+
+.footerSection--contact div h3 {
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+.footerSection--contact div h3 svg {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 992px) {
+    footer {
+        font-size: 1.5rem;
+    }
+    .footer-elements {
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer-elements .menu-options__element--footer {
+        font-size: 1.5rem;
+    }
+    .footer-elements .footerSection--contact {
+        margin: 0 3rem;
+    }
+    .footer-elements .footerSection--contact div h3 {
+        font-size: 1.5rem;
+    }
+    h3.mini-title-2 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer-elements {
+        flex-direction: column;
+    }
+}
+
+
+/*# sourceMappingURL=Footer.css.map */

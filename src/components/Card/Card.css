@@ -1,0 +1,64 @@
+  .Card {
+    margin: 0;
+    padding: 0 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .Card .title {
+    margin-top: 0;
+    padding-top: 4rem;
+  }
+
+  .Card-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .Card__sectionImage {
+    margin: 2rem auto 0;
+    width: 60%;
+    box-sizing: border-box;
+  }
+
+  .Card__sectionContent {
+    width: 30%;
+  }
+
+  .Card__sectionImage img {
+    width: 100%;
+  }
+
+  .home--character {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgb(30, 0, 58) 46%, rgba(0,10,20,1) 70%);
+  }
+
+  .home--location {
+    background: rgb(27,7,0);
+    background: linear-gradient(0deg, rgba(27,7,0,1) 28%, rgba(0,10,20,1) 70%);
+  }
+  .home--episode {
+    background: rgb(18,25,28);
+    background: linear-gradient(0deg, rgba(18,25,28,1) 22%, rgba(33,77,80,1) 43%, rgba(27,7,0,1) 80%);
+  }
+  @media (min-width: 992px) {
+  .home--location .Card-content .Card__sectionImage{
+    order:0;
+  }
+  .home--location .Card-content .Card__sectionContent{
+    order:1;
+  }
+}
+  @media (max-width: 992px) {
+    .Card__section--first {
+      width: 100%;
+    }
+    .Card__sectionImage {
+      box-sizing: border-box;
+      display: flex;
+      width: 100%;
+    }
+    .Card__sectionImage img {
+      width: 100%;
+    }
+  }

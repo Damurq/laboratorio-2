@@ -1,0 +1,83 @@
+.menu{
+    display: flex;
+    flex-wrap: wrap;
+}
+.menu .menu--page{
+    display: flex;
+    flex-direction: column;
+    background-color: #e6ddce;
+    border: 10px groove rgba(192,178,169,1);
+    margin: 1.5rem;
+    border-radius: 15px; 
+    padding-bottom: 1rem;
+}
+
+
+.information--location .menu .menu--page {
+    background: #161d20;
+    border-color: #00eeff71;
+    color:rgb(255, 255, 255);
+}
+
+
+.menu--page h2{
+    border-radius: 20px;
+    margin: 1.5rem;
+    display: inline-block;
+    text-align: center;
+    background-color: #c8c0af;
+}
+.information--location .menu--page h2{
+    background-color: inherit;
+}
+
+.menu__imputs{
+    margin: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.board{
+    margin: 1rem auto;
+    width: 80%;
+}
+.data{
+    padding: 2rem;
+    padding-bottom: 0;
+    border: 10px groove #e4d79c;
+    border-radius: 20px;
+    background: rgb(78,103,104);
+    background: linear-gradient(180deg, rgba(78,103,104,1) 2%, rgba(82,101,107,1) 21%, rgba(76,123,112,1) 57%, rgba(73,124,120,1) 74%,  rgb(100 158 150) 93%);
+}
+.information--location .data{
+    border: 10px groove #00eeff71;
+    background: rgb(18,25,28);
+    background: linear-gradient(180deg, rgba(18,25,28,1) 41%, rgba(4,46,62,1) 73%, rgba(5,68,92,1) 97%);
+
+}
+
+.data h2{
+    text-align: center;
+    margin: 1rem 0;
+    color:rgb(253, 253, 253) ;
+}
+.board .data table{
+    margin: 0 auto;
+    border: rgb(255, 255, 255) 5px solid;
+    border-radius: 20px;
+    padding-bottom: 1.2rem;
+    border-bottom: 10px groove rgba(0,239,255,1);
+    background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
+    font-size: 1.4rem;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.board .data table td{
+    border: rgb(253, 253, 253) 2px solid;
+    padding: 5px;
+    font-weight: bold;
+}
+thead{
+    text-align: left;
+    font-weight: bolder;
+}
