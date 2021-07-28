@@ -1,0 +1,13 @@
+.information{
+    background: rgb(188,162,108);
+background: linear-gradient(180deg, rgba(188,162,108,1) 0%, rgba(188,162,108,1) 28%, rgba(188,162,108,1) 48%, rgba(211,170,124,1) 77%);
+    border-bottom: 10px groove rgba(0,239,255,1);
+    border-top: 5px solid rgb(85, 34, 2);
+
+    /*linear-gradient(0deg, rgba(91,98,199,1) 5%, rgba(0,239,255,1) 42%, rgba(159,247,255,1) 69%, rgba(210,251,255,0.8183648459383753) 100%);*/
+}
+
+.information--location{
+    background: rgb(18,25,28);
+    background: linear-gradient(180deg, rgba(18,25,28,1) 41%, rgba(4,46,62,1) 73%, rgba(5,68,92,1) 97%);
+}

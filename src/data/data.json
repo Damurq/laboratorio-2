@@ -1,0 +1,42 @@
+{
+    "components": {
+        "Navbar": [{
+                "name": "Home",
+                "type": "Link",
+                "href": "/"
+            },
+            {
+                "name": "Character",
+                "type": "a",
+                "href": "#character"
+            },
+            {
+                "name": "Location",
+                "type": "a",
+                "href": "#location"
+            },
+            {
+                "name": "Episode",
+                "type": "a",
+                "href": "#episode"
+            }
+        ],
+        "Card":{
+            "character":{
+                "title":"Character",
+                "text":"Aquí encontrarás a todos los personajes conocidos hasta la fecha de la serie.",
+                "imgsrc":"Home/1.png"
+            },
+            "location":{
+                "title":"Location",
+                "text":"Todos los lugares que se muestran en la serie.",
+                "imgsrc":"Home/2.jpg"
+            },
+            "episode":{
+                "title":"Episode",
+                "text":"Todos los episodios de la serie.",
+                "imgsrc":"Home/3.jpg"
+            }
+        }
+    }
+}
