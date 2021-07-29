@@ -8,7 +8,7 @@ import Pagination from '../Pagination/Pagination'
 const Board = ({ style }) => {
     const menu = filterData[style]["menu"]
     const [data, setData] = useState([])//currentCountries
-    const [value, setValue] = useState({order:"Seleccione una opcion",filter:objFilter()})
+    const [value, setValue] = useState({order:menu["order"]["options"],filter:objFilter()})
     const [input, setinput] = useState("")
     //pagination
     const [totalData, settotalData] = useState([])
@@ -31,13 +31,12 @@ const Board = ({ style }) => {
     const handleChange = (event) => {
         let obj = value
         //console.log(event.target.value)
+        //console.log(value)
         if (event.target.className==="order") {
+            console.log(value)
             obj[event.target.className] = event.target.value
         } else if(event.target.className==="filter"){
             obj[event.target.className][event.target.name] = event.target.value
-        }
-        else if(event.target.className==="search"){
-            obj[event.target.className] = event.target.value
         }
         setValue(obj)
     }
@@ -81,7 +80,7 @@ const Board = ({ style }) => {
         }
     }
 
-    const select = (menu,name=null,name2=null)  => {
+    const select = (menu,name=null)  => {
         if (menu==="order") {
             return value[menu]
         } else if (menu==="filter"){
@@ -154,7 +153,11 @@ const Board = ({ style }) => {
             setTotalRecords(totalData.length);
             let final = totalData.length >= 20 ? 19 : totalData.length-1
             setData(totalData.slice(0,final));
-            setCurrentPage(1)
+            setCurrentPage(1);
+            let btn = document.querySelector('button.page-link')
+            if (btn) {
+                btn.click();
+            }
         }
     }, [totalData]);
 

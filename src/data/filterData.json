@@ -12,7 +12,7 @@
                 {
                     "label":"name",
                     "type":"select",
-                    "options":["Selececione una opción","A-Z","Z-A"]
+                    "options":["Selececione una opcion","A-Z","Z-A"]
                 }
             ],
             "filter":[
