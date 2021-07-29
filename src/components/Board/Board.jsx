@@ -8,8 +8,7 @@ import Pagination from '../Pagination/Pagination'
 const Board = ({ style }) => {
     const menu = filterData[style]["menu"]
     const [data, setData] = useState([])//currentCountries
-    //const [value, setValue] = useState({order:"Seleccione una opcion",filter:objFilter()})
-    const [value, setValue] = useState({order:"Seleccione una opcion"})
+    const [value, setValue] = useState({order:"Seleccione una opcion",filter:objFilter()})
 
     //pagination
     const [totalData, settotalData] = useState([])
@@ -19,34 +18,34 @@ const Board = ({ style }) => {
     //otras
     const urlBase = "https://rickandmortyapi.com/api/"
 
-    // function objFilter() {
-    //     let objData = {}
-    //     if (Object.keys(menu).includes("filter")){
-    //         menu.filter.forEach((v) => {
-    //             objData[v["label"]] = v["options"][0];
-    //         })
-    //     }
-    //     return objData;
-    // }
+    function objFilter() {
+        let objData = {}
+        if (Object.keys(menu).includes("filter")){
+            menu.filter.forEach((v) => {
+                objData[v["label"]] = v["options"][0];
+            })
+        }
+        return objData;
+    }
 
     const handleChange = (event) => {
         let obj = value
-        //console.log(event.target)
-        // if (event.target.key==="order") {
+        console.log(event.target.className)
+        if (event.target.className==="order") {
             obj[event.target.className] = event.target.value
-        // } else {
-        //     obj[event.target.className][event.target.name] = event.target.value
-        // }
+        } else {
+            obj[event.target.className][event.target.name] = event.target.value
+        }
         setValue(obj)
     }
 
     function dataModification (event)   {
         event.preventDefault()
         const className = event.target.className;
-        //console.log(event.target)
-        //console.log(totalData)
+        console.log(event.target)
+        console.log(totalData)
         if (className.includes("order")) {
-            //console.log(value)
+            console.log(value)
             if ((value["order"]==="A-Z")||(value["order"]==="Z-A")) {
                 if (totalData.length===0) {
                     getAll("https://rickandmortyapi.com/api/",style,filterData[style]["data"]).then((res) => {
@@ -57,9 +56,9 @@ const Board = ({ style }) => {
                 }
             } 
         } else if (className.includes("filter")){
-            //console.log(value)
+            console.log(value)
             filterD("https://rickandmortyapi.com/api/",style,value["filter"]).then((res) => {
-                //console.log(res)
+                console.log(res)
                 let fdt = filterDataTable(filterData[style]["data"], res.results);
                 getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
                     fdt.push(...r)
@@ -67,13 +66,18 @@ const Board = ({ style }) => {
                 })
             })
         }
+        else if (className.includes("search")){
+            
+            console.log(document.querySelector("input"))
+
+        }
     }
 
     const select = (menu,name=null,name2=null)  => {
         if (menu==="order") {
             return value[menu]
         } else {
-            return value[menu]
+            return value[menu][name]
         }
     }
 
@@ -90,7 +94,7 @@ const Board = ({ style }) => {
     };
 
     const onPageChanged = data => {
-        //console.log(data)
+        console.log(data)
         if (totalData.length===0) {
         setCurrentPage(data.currentPage);
         let url = data.currentPage === 1 ? urlBase + style : urlBase + style + "?page=" + data.currentPage
@@ -106,9 +110,9 @@ const Board = ({ style }) => {
         } else {
             const offset = (data.currentPage - 1) * pageLimit;
             setTotalRecords(totalData.length);
-            //console.log("vamos a ver")
-            //console.log(offset)
-            //console.log(pageLimit)
+            console.log("vamos a ver")
+            console.log(offset)
+            console.log(pageLimit)
             setData(totalData.slice(offset, offset + pageLimit));
             //setPageLimit(offset + pageLimit);
             setCurrentPage(data.currentPage);
@@ -116,8 +120,8 @@ const Board = ({ style }) => {
     }
 
     useEffect(() => {
-        //console.log("ya")
-        //console.log(totalData)
+        console.log("ya")
+        console.log(totalData)
         if (totalData.length===0) {
         const ac = new AbortController();
         if (Object.keys(filterData).includes(style)) {
@@ -154,7 +158,7 @@ const Board = ({ style }) => {
                                         <label key={key + index} htmlFor={i.label}>
                                             {i.label}
                                             {i.type !== "select"
-                                                ? <input type={i.type} name={i.label} /> : <select name={i.label} className={key} value={select(key)} onChange={handleChange}>
+                                                ? <input type={i.type} name={i.label} /> : <select name={i.label} className={key} value={select(key,i.labe)} onChange={handleChange}>
                                                     {i.options.map((l, index2) => {
                                                         return (
                                                             <option key={key + "__option" + index2} value={l}>{l}</option>)
