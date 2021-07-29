@@ -41,6 +41,8 @@ const Board = ({ style }) => {
         setValue(obj)
     }
 
+
+
     function dataModification (event)   {
         event.preventDefault()
         const className = event.target.className;
@@ -61,11 +63,16 @@ const Board = ({ style }) => {
             //console.log(value)
             if (totalData.length===0) {
                 filterD("https://rickandmortyapi.com/api/",style,value["filter"]).then((res) => {
-                    let fdt = filterDataTable(filterData[style]["data"], res.results);
-                    getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
-                        fdt.push(...r)
-                        settotalData(fdt)
-                    })
+                    if(res.results.length===0){
+                        setData([])
+                    }
+                    else{
+                        let fdt = filterDataTable(filterData[style]["data"], res.results);
+                        getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
+                            fdt.push(...r)
+                            settotalData(fdt)
+                        })
+                    }
                 })
             } else {
                 let result = []
@@ -85,12 +92,17 @@ const Board = ({ style }) => {
         else if (className.includes("search")){
             if (totalData.length===0) {
                 filterD("https://rickandmortyapi.com/api/",style,{name:input}).then((res) => {
-                    //console.log(res)
-                    let fdt = filterDataTable(filterData[style]["data"], res.results);
-                    getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
-                        fdt.push(...r)
-                        settotalData(fdt)
-                    })
+                    console.log(res)
+                    if(res.results.length===0){
+                        setData([])
+                    }
+                    else{
+                        let fdt = filterDataTable(filterData[style]["data"], res.results);
+                        getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
+                            fdt.push(...r)
+                            settotalData(fdt)
+                        })
+                    }
                 })
             } else {
                 let result = totalData.filter(element => element["name"].toLowerCase().includes(input.toLowerCase()))
@@ -178,7 +190,7 @@ const Board = ({ style }) => {
         return () => ac.abort();
         } else {
             setTotalRecords(totalData.length);
-            let final = totalData.length >= 20 ? 19 : totalData.length-1
+            let final = totalData.length >= 20 ? 19 : totalData.length
             setData(totalData.slice(0,final));
             setCurrentPage(1);
             let btn = document.querySelector('button.page-link')
@@ -249,7 +261,11 @@ const Board = ({ style }) => {
                         </div>
                         <div className="">
                             <div id="totalRecords" className="none" name={totalRecords} >{totalRecords}</div>
+                            
+                            {totalRecords>20 ?
                             <Pagination totalRecords={totalRecords} pageLimit={pageLimit} pageNeighbours={1} onPageChanged={onPageChanged} />
+                                :<p></p>
+                        }
                         </div>
                     </React.Fragment>)
                     : <p className="error">NOT FOUND - 404</p>}

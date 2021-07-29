@@ -1,16 +1,32 @@
+var defaultObject ={
+    info:{
+        count: 0,
+        next: null,
+        pages: 0
+    },
+    results:[]
+}
+
+
 /**
  * 
  * @param {*} url 
  * @returns 
  */
 async function request(url){
-    const response = await fetch(url)
+    try
+    {const response = await fetch(url)
     if (!response.ok){   
-        throw new Error("WARN", response.status);
+        return defaultObject
     }
-    const data = await response.text();
-    const json = JSON.parse(data);
-    return json;
+    else{
+        const data = await response.text();
+        const json = JSON.parse(data);
+        return json;
+    }}
+    catch(e){
+        return defaultObject
+    }
 }
 /**
  * 
@@ -72,8 +88,8 @@ async function episode (){
     return data.results
 }
 
-async function locationm (){
-    let data = await request("https://rickandmortyapi.com/api/locationm")
+async function location (){
+    let data = await request("https://rickandmortyapi.com/api/location")
     return data.results
 }
 // filterD("https://rickandmortyapi.com/api/","character",{gender:"male"}).then((result)=>{
@@ -98,7 +114,6 @@ async function locationm (){
 //     console.log(result)
 //     da = filterDataTable(["id","name","status","species","gender"],result)
 //     console.log(da)
-
 // })
 // console.log(da)
 module.exports = {
@@ -107,6 +122,6 @@ module.exports = {
     getAll,
     character,
     episode,
-    locationm,
+    location,
     filterDataTable
 }
