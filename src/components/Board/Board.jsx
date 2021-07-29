@@ -33,7 +33,7 @@ const Board = ({ style }) => {
         //console.log(event.target.value)
         //console.log(value)
         if (event.target.className==="order") {
-            console.log(value)
+            //console.log(value)
             obj[event.target.className] = event.target.value
         } else if(event.target.className==="filter"){
             obj[event.target.className][event.target.name] = event.target.value
@@ -59,24 +59,47 @@ const Board = ({ style }) => {
             } 
         } else if (className.includes("filter")){
             //console.log(value)
-            filterD("https://rickandmortyapi.com/api/",style,value["filter"]).then((res) => {
-                //console.log(res)
-                let fdt = filterDataTable(filterData[style]["data"], res.results);
-                getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
-                    fdt.push(...r)
-                    settotalData(fdt)
+            if (totalData.length===0) {
+                filterD("https://rickandmortyapi.com/api/",style,value["filter"]).then((res) => {
+                    let fdt = filterDataTable(filterData[style]["data"], res.results);
+                    getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
+                        fdt.push(...r)
+                        settotalData(fdt)
+                    })
                 })
-            })
+            } else {
+                let result = []
+                Object.keys(value["filter"]).forEach((lab,index) => {
+                    result = index===0 
+                        ? totalData.filter(element => element[lab]===value["filter"][lab] )
+                        : result.filter(element => element[lab]===value["filter"][lab] )
+                })
+                if (result.length===0) {
+                    setData([])
+                } else {
+                    settotalData(result)
+                }
+            }
+
         }
         else if (className.includes("search")){
-            filterD("https://rickandmortyapi.com/api/",style,{name:input}).then((res) => {
-                //console.log(res)
-                let fdt = filterDataTable(filterData[style]["data"], res.results);
-                getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
-                    fdt.push(...r)
-                    settotalData(fdt)
+            if (totalData.length===0) {
+                filterD("https://rickandmortyapi.com/api/",style,{name:input}).then((res) => {
+                    //console.log(res)
+                    let fdt = filterDataTable(filterData[style]["data"], res.results);
+                    getAll(res.info.next,"",filterData[style]["data"]).then((r)=>{
+                        fdt.push(...r)
+                        settotalData(fdt)
+                    })
                 })
-            })
+            } else {
+                let result = totalData.filter(element => element["name"].toLowerCase().includes(input.toLowerCase()))
+                if (result.length===0) {
+                    setData([])
+                } else {
+                    settotalData(result)
+                }
+            }
         }
     }
 
@@ -129,6 +152,10 @@ const Board = ({ style }) => {
             //setPageLimit(offset + pageLimit);
             setCurrentPage(data.currentPage);
         }
+    }
+
+    function reset(event) {
+        settotalData([])
     }
 
     useEffect(() => {
@@ -187,13 +214,10 @@ const Board = ({ style }) => {
                                 <button id={"btn-sello-"+key} className={"btn--sello " + key} onClick={dataModification}>{key}</button>
                         </form>)
                 })}
-                <div id="menu">
-
-                </div>
-                <div id="menu">
-
-                </div>
             </div>
+            <div className="reset">
+                    <button onClick={reset}>Reiniciar Busqueda</button>
+                </div>
             <div id="board" className="board">
 
                 {data.length > 0 ?
