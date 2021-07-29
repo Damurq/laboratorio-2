@@ -39,6 +39,7 @@ class Pagination extends Component {
         ? Math.max(0, Math.min(pageNeighbours, 2))
         : 0;
         this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
+        //totalRecords = document.getElementById("totalRecords") ? parseInt(document.getElementById("totalRecords").name) : 0
         this.state = { currentPage: 1 };
     }
   /**
@@ -53,7 +54,13 @@ class Pagination extends Component {
    * {...x} => represents page neighbours
    */
   fetchPageNumbers = () => {
-    const totalPages = this.totalPages;
+    //console.log(document.getElementById("totalRecords"))
+    const totalRecords = document.getElementById("totalRecords") !==null ? parseInt(document.getElementById("totalRecords").innerHTML) : this.totalRecords
+    this.totalPages = Math.ceil(totalRecords / this.pageLimit);
+    //console.log("here")
+    //console.log(totalRecords)
+    //console.log(this.totalPages)
+    const totalPages =  this.totalPages;
     const currentPage = this.state.currentPage;
     const pageNeighbours = this.pageNeighbours;
     /**

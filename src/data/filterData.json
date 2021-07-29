@@ -2,34 +2,11 @@
     "character":{
         "data":["id","name","status","species","gender"],
         "menu":{
-            "search":[
-                {
-                    "label":"name",
-                    "type":"text"
-                }
-            ],
             "order":[
                 {
                     "label":"name",
                     "type":"select",
                     "options":["Selececione una opción","A-Z","Z-A"]
-                }
-            ],
-            "filter":[
-                {
-                    "label":"gender",
-                    "type":"select",
-                    "options":[]
-                },
-                {
-                    "label":"status",
-                    "type":"select",
-                    "options":[]
-                },
-                {
-                    "label":"species",
-                    "type":"select",
-                    "options":[]
                 }
             ]
         }
@@ -37,29 +14,11 @@
     "location":{
         "data":["id","name","type","dimension"],
         "menu":{
-            "search":[
-                {
-                    "label":"name",
-                    "type":"text"
-                }
-            ],
             "order":[
                 {
                     "label":"name",
                     "type":"select",
                     "options":["Selececione una opción","A-Z","Z-A"]
-                }
-            ],
-            "filter":[
-                {
-                    "label":"type",
-                    "type":"select",
-                    "options":[]
-                },
-                {
-                    "label":"dimension",
-                    "type":"select",
-                    "options":[]
                 }
             ]
         }
@@ -67,29 +26,11 @@
     "episode":{
         "data":["id","name","air_date"],
         "menu":{
-            "search":[
-                {
-                    "label":"name",
-                    "type":"text"
-                }
-            ],
             "order":[
                 {
                     "label":"name",
                     "type":"select",
                     "options":["Selececione una opción","A-Z","Z-A"]
-                }
-            ],
-            "filter":[
-                {
-                    "label":"status",
-                    "type":"select",
-                    "options":[]
-                },
-                {
-                    "label":"species",
-                    "type":"select",
-                    "options":[]
                 }
             ]
         }

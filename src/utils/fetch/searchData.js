@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @param {*} url 
+ * @returns 
+ */
 async function request(url){
     const response = await fetch(url)
     if (!response.ok){   
@@ -8,7 +12,12 @@ async function request(url){
     const json = JSON.parse(data);
     return json;
 }
-
+/**
+ * 
+ * @param {*} labels 
+ * @param {*} data 
+ * @returns 
+ */
 function filterDataTable(labels,data){
     let newData = data.map((obj)=>{
         let objData = {}
@@ -19,9 +28,38 @@ function filterDataTable(labels,data){
     })
     return newData
 }
-//console.log(character())
 
-//console.log(filterDataTable(["id","name","status","species","gender"],character()))
+/**
+ * 
+ * @param {*} urlBase 
+ * @param {*} schema 
+ * @param {*} filters 
+ */
+async function filterD (urlBase="",schema="",filters={}){
+    let newUrl = urlBase+schema 
+    Object.keys(filters).forEach((element,index)=>{
+        if (index==0){
+            newUrl+="?"+element+"="+filters[element];
+        }
+        else{
+            newUrl+="&"+element+"="+filters[element];
+        }
+    })
+    let data = await request(newUrl)
+    //console.log(newUrl)
+    return data
+}
+
+async function getAll (urlBase="",schema="",labels){
+    let info =[]
+    let next = typeof urlBase==="string" ? urlBase+schema:null 
+    while (next!==null) {
+        let data = await request(next)
+        next= data.info.next
+        info.push(...filterDataTable(labels,data.results));
+    }
+    return info;
+}
 
 async function character (){
     let data = await request("https://rickandmortyapi.com/api/character")
@@ -34,10 +72,27 @@ async function episode (){
     return data.results
 }
 
-async function location (){
-    let data = await request("https://rickandmortyapi.com/api/location")
+async function locationm (){
+    let data = await request("https://rickandmortyapi.com/api/locationm")
     return data.results
 }
+// filterD("https://rickandmortyapi.com/api/","character",{gender:"male"}).then((result)=>{
+//      console.log(result)
+//  })
+// getAll("https://rickandmortyapi.com/api/","location",["id","name","type","dimension"]).then((result)=>{
+//      let generos = result.map((gen)=>gen["dimension"])
+//      console.log(generos)
+// console.log(generos.filter((valor, indice) => {
+//         return generos.indexOf(valor) === indice;
+//       }))
+// })
+// getAll("https://rickandmortyapi.com/api/","character",["id","name","status","species","gender"]).then((result)=>{
+//      let generos = result.map((gen)=>gen["gender"])
+//      console.log(generos)
+// console.log(generos.filter((valor, indice) => {
+//         return generos.indexOf(valor) === indice;
+//       }))
+// })
 // var da =[]
 // character().then((result)=>{
 //     console.log(result)
@@ -48,8 +103,10 @@ async function location (){
 // console.log(da)
 module.exports = {
     request,
+    filterD,
+    getAll,
     character,
     episode,
-    location,
+    locationm,
     filterDataTable
 }

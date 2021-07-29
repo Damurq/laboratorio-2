@@ -68,16 +68,32 @@
     padding-bottom: 1.2rem;
     border-bottom: 10px groove rgba(0,239,255,1);
     background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
-    font-size: 1.4rem;
+    -size: 1.2rem;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .board .data table td{
     border: rgb(253, 253, 253) 2px solid;
     padding: 5px;
-    font-weight: bold;
+    -weight: bold;
 }
 thead{
     text-align: left;
-    font-weight: bolder;
+    -weight: bolder;
+}
+
+.content__btn{
+    width: 60%;
+}
+.btn--sello{
+    -size: 1.2rem;
+    outline: none;
+    border-radius: 30px;
+    display:inline-block;
+    padding: 1rem;
+    border: rgb(112, 7, 7) 2px double;
+}
+
+.none{
+    display: none;
 }
