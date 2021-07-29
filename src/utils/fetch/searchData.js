@@ -39,7 +39,7 @@ async function filterD (urlBase="",schema="",filters={}){
     let newUrl = urlBase+schema 
     Object.keys(filters).forEach((element,index)=>{
         if (index==0){
-            newUrl+="?"+element+"="+filters[element];
+            newUrl+="/?"+element+"="+filters[element];
         }
         else{
             newUrl+="&"+element+"="+filters[element];
