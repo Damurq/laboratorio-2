@@ -88,10 +88,6 @@ async function episode (){
     return data.results
 }
 
-async function location (){
-    let data = await request("https://rickandmortyapi.com/api/location")
-    return data.results
-}
 // filterD("https://rickandmortyapi.com/api/","character",{gender:"male"}).then((result)=>{
 //      console.log(result)
 //  })
@@ -102,13 +98,16 @@ async function location (){
 //         return generos.indexOf(valor) === indice;
 //       }))
 // })
-// getAll("https://rickandmortyapi.com/api/","character",["id","name","status","species","gender"]).then((result)=>{
-//      let generos = result.map((gen)=>gen["gender"])
-//      console.log(generos)
-// console.log(generos.filter((valor, indice) => {
-//         return generos.indexOf(valor) === indice;
-//       }))
-// })
+
+async function getDataBar (section,labels,label){
+    let result = await getAll("https://rickandmortyapi.com/api/",section,labels)
+        let dta = result.map((d)=>d[label])
+        return dta
+   
+}
+
+
+
 // var da =[]
 // character().then((result)=>{
 //     console.log(result)
@@ -117,11 +116,11 @@ async function location (){
 // })
 // console.log(da)
 module.exports = {
+    getDataBar,
     request,
     filterD,
     getAll,
     character,
     episode,
-    location,
     filterDataTable
 }

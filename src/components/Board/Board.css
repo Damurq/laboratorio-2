@@ -42,8 +42,7 @@
     width: 80%;
 }
 .data{
-    overflow-y: scroll;
-	overflow-x: scroll;
+
     padding: 2rem;
     padding-bottom: 0;
     border: 10px groove #e4d79c;
@@ -145,3 +144,9 @@ select{
     cursor: pointer;
 }
 
+@media (max-width: 992px) {
+    .data{
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
+}

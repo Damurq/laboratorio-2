@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
 import Home from "./pages/Home/Home"
 import Imformation from "./pages/Information/Information"
+import Graphics from "./pages/Graphics/Graphics"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "./App.css"
 import "./Animations.css"
@@ -33,8 +34,8 @@ const App = () => {
           <Navbar />
           <div className="Content">
             <Switch>
-              <Route path={["/character/:id", "/location/:id", "/episode/:id"]}>
-                <Imformation />
+              <Route exact path="/dashboard/">
+                <Graphics />
               </Route>
               <Route path={["/character/", "/location/", "/episode/"]}>
                 <Imformation />

@@ -1,7 +1,11 @@
 .navPagination{
   padding: 1rem;
-  overflow-x: scroll;
-
+}
+@media (max-width: 992px) {
+  .navPagination{
+    overflow-x: scroll;
+  
+  }
 }
 
 .pagination {
