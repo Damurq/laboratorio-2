@@ -79,7 +79,6 @@ async function getAll (urlBase="",schema="",labels){
 
 async function character (){
     let data = await request("https://rickandmortyapi.com/api/character")
-    //console.log(data)
     return data.results
 }
 
@@ -87,17 +86,6 @@ async function episode (){
     let data = await request("https://rickandmortyapi.com/api/episode")
     return data.results
 }
-
-// filterD("https://rickandmortyapi.com/api/","character",{gender:"male"}).then((result)=>{
-//      console.log(result)
-//  })
-// getAll("https://rickandmortyapi.com/api/","location",["id","name","type","dimension"]).then((result)=>{
-//      let generos = result.map((gen)=>gen["dimension"])
-//      console.log(generos)
-// console.log(generos.filter((valor, indice) => {
-//         return generos.indexOf(valor) === indice;
-//       }))
-// })
 
 async function getDataBar (section,labels,label){
     let result = await getAll("https://rickandmortyapi.com/api/",section,labels)
@@ -108,13 +96,7 @@ async function getDataBar (section,labels,label){
 
 
 
-// var da =[]
-// character().then((result)=>{
-//     console.log(result)
-//     da = filterDataTable(["id","name","status","species","gender"],result)
-//     console.log(da)
-// })
-// console.log(da)
+
 module.exports = {
     getDataBar,
     request,
