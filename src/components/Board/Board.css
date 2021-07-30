@@ -42,6 +42,8 @@
     width: 80%;
 }
 .data{
+    overflow-y: scroll;
+	overflow-x: scroll;
     padding: 2rem;
     padding-bottom: 0;
     border: 10px groove #e4d79c;
@@ -96,4 +98,14 @@ thead{
 
 .none{
     display: none;
+}
+
+.reset .btn--sello{
+ margin: 0 auto;
+}
+
+.container__btn{
+    display: flex;
+  justify-content: center;
+  align-items: center;
 }

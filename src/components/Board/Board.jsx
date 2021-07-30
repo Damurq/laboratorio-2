@@ -223,12 +223,14 @@ const Board = ({ style }) => {
                                     )
                                 })}
                             </div>
+                            <div className="container__btn">
                                 <button id={"btn-sello-"+key} className={"btn--sello " + key} onClick={dataModification}>{key}</button>
+                            </div>
                         </form>)
                 })}
             </div>
-            <div className="reset">
-                    <button onClick={reset}>Reiniciar Busqueda</button>
+            <div className="container__btn">
+                    <button className="btn--sello" onClick={reset}>Reiniciar Busqueda</button>
                 </div>
             <div id="board" className="board">
 

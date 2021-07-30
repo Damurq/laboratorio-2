@@ -1,5 +1,7 @@
 .navPagination{
   padding: 1rem;
+  overflow-x: scroll;
+
 }
 
 .pagination {
