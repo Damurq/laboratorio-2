@@ -52,7 +52,7 @@
     background: linear-gradient(180deg, rgba(78,103,104,1) 2%, rgba(82,101,107,1) 21%, rgba(76,123,112,1) 57%, rgba(73,124,120,1) 74%,  rgb(100 158 150) 93%);
 }
 .information--location .data{
-    border: 10px groove #00eeff71;
+    border: 10px groove #85858571;
     background: rgb(18,25,28);
     background: linear-gradient(180deg, rgba(18,25,28,1) 41%, rgba(4,46,62,1) 73%, rgba(5,68,92,1) 97%);
 
@@ -94,6 +94,7 @@ thead{
     display:inline-block;
     padding: 1rem;
     border: rgb(112, 7, 7) 2px double;
+    cursor: pointer;
 }
 
 .none{
@@ -109,3 +110,38 @@ thead{
   justify-content: center;
   align-items: center;
 }
+
+
+
+input{
+    width: 200px;
+    height: 20px;
+    padding: 0 15px;
+    background-color: #f3f1f1;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    color: black;
+    text-align: center;
+    font-size: 0,9rem;
+
+}
+
+input:focus{
+    box-shadow: 0px 0px 30px 2px  #85858571;
+}
+
+select{
+    width: 200px;
+    height: 20px;
+    padding: 0 15px;
+    background-color: #f3f1f1;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    color: black;
+    text-align: center;
+    font-size: 0,9rem;
+    cursor: pointer;
+}
+
