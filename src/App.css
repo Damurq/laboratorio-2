@@ -97,16 +97,19 @@ body {
     box-shadow: 6px 6px 20px -1px rgba(0, 0, 0, 0.15)
 }
 
-.button-dark {
+.button-dark{
     font-size: 1.2rem;
     border: 1px solid #FFFFFF;
-    border-radius: 30px;
+    border-radius: 50px;
     background-color: #12191C;
     color: #FFFFFF;
     padding: .5rem 3.5rem;
     display: inline-block;
     text-decoration: none;
     transition: background-color 1s ease, color 1s ease;
+    z-index: 9;
+    cursor: pointer;
+    
 }
 
 .button-yellow:hover {
@@ -114,9 +117,22 @@ body {
 }
 
 .button-dark:hover {
+    background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
+    animation: rotate 1.5s linear infinite;
     border: 1px solid #12191C;
-    background-color: #FFFFFF;
+    /*background-color: #FFFFFF;*/
     color: #12191C;
+    font-weight: bold;
+    
+}
+
+@keyframes rotate {
+    0%{
+      filter: hue-rotate(0deg);
+    }
+    100%{
+      filter: hue-rotate(360deg);
+    }
 }
 
 button.theme--1 {
