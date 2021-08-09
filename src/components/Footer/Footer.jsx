@@ -17,16 +17,35 @@ const Footer = () => {
                 </ul>
             </div>
             <div className="footerSection--SocialMedia">
-                <h3 className="text--center">Rick y Morty</h3>
+                <h3 className="text--center">Follow us!</h3>
+                <div className="row">
+                    <img src="footer/facebook.png"></img>
+                    <label>Follow us on Facebook</label>
+                </div>
+                <div className="row">
+                    <img src="footer/instagram.png"></img>
+                    <label>Follow us on Instagram</label>
+                </div>
+                <div className="row">
+                    <img src="footer/twitter.png"></img>
+                    <label>Follow us on Twitter</label>
+                </div>
             </div>
             <div className="footerSection--contact">
                     <div  >
-                        <h3>Integrantes</h3>
-                        <ul>
-                            <li  className={liClass}>Michael Montero</li>
-                            <li  className={liClass}>Yurisbellys Brizuella</li>
-                            <li  className={liClass}>Marihec Miranda</li>
-                        </ul>
+                        <h3  className="text--center">Team</h3>
+                        <div className="row">
+                            <img src="team/girl.png"></img>
+                            <label>Yurisbellys Brizuela</label>
+                        </div>
+                        <div className="row">
+                            <img src="team/boy.png"></img>
+                            <label>Michael Montero</label>
+                        </div>
+                        <div className="row">
+                            <img src="team/girl.png"></img>
+                            <label>Marihec Miranda</label>
+                        </div>
                     </div>
             </div>
         </div>
