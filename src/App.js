@@ -5,27 +5,8 @@ import Imformation from "./pages/Information/Information"
 import Graphics from "./pages/Graphics/Graphics"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "./App.css"
-import "./Animations.css"
-import { useEffect } from "react"
 
 const App = () => {
-  useEffect(() => {
-    const elements = document.querySelectorAll(".animate")
-    const scrollAnimation = () => {
-      let topScreen = document.documentElement.scrollTop;
-      elements.forEach((element, index) => {
-        let top = element.offsetTop;
-        if (top - 450 < topScreen) {
-          if (element.classList.contains("animate-left"))
-            element.classList.add("scale-in-hor-left");
-          else {
-            element.classList.add("scale-in-hor-right");
-          }
-        }
-      })
-    }
-    window.addEventListener("scroll", scrollAnimation);
-  }, []);
 
   return (
     <div className="DARK" id="">

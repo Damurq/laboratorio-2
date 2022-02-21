@@ -1,9 +1,11 @@
 import React, {useState,useEffect} from 'react'
 import { Bar } from 'react-chartjs-2';
 import db from "../../data/filterData.json"
-import { getDataBar } from '../../utils/fetch/searchData'
+import { getAll } from '../../utils/fetch/searchData'
 
 const Chart = ({section , label, optionsLabel}) => {
+    const urlBase = "https://rickandmortyapi.com/api/"
+
     let dataEmpty ={
         labels: [],
         datasets:[{
@@ -33,7 +35,7 @@ const Chart = ({section , label, optionsLabel}) => {
         if (values.datasets[0].data.length===0) {
             let data = dataEmpty
             let temporalData = []
-            getDataBar(section,rawLabels,label)
+            getAll(urlBase,section,[label],true)
                 .then((response) => {
                     data.labels = optionsLabel
                     data.datasets[0].label = label

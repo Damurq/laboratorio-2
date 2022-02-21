@@ -9,7 +9,7 @@ const Information = () => {
     
     return (
         <div className={"information "+"information--"+path }>
-            <Board style={path} />
+            <Board schema={path} />
         </div>
     )
 }
