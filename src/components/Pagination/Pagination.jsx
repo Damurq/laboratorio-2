@@ -1,6 +1,10 @@
+// Reac
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+// CSS
 import './Pagination.css'
+
+//CONST
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
 
@@ -54,12 +58,12 @@ class Pagination extends Component {
    * {...x} => represents page neighbours
    */
   fetchPageNumbers = () => {
-    //console.log(document.getElementById("totalRecords"))
-    const totalRecords = document.getElementById("totalRecords") !==null ? parseInt(document.getElementById("totalRecords").innerHTML) : this.totalRecords
+    const totalRecords = document.getElementById("totalRecords") !==null 
+      ? parseInt(document.getElementById("totalRecords").innerHTML) > this.pageLimit 
+        ? parseInt(document.getElementById("totalRecords").innerHTML)
+        : this.pageLimit + 1
+      : this.totalRecords
     this.totalPages = Math.ceil(totalRecords / this.pageLimit);
-    //console.log("here")
-    //console.log(totalRecords)
-    //console.log(this.totalPages)
     const totalPages =  this.totalPages;
     const currentPage = this.state.currentPage;
     const pageNeighbours = this.pageNeighbours;

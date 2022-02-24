@@ -117,10 +117,10 @@ body {
 }
 
 .button-dark:hover {
-    background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
+    /* background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
     animation: rotate 1.5s linear infinite;
-    border: 1px solid #12191C;
-    /*background-color: #FFFFFF;*/
+    border: 1px solid #12191C; */
+    background-color: #FFFFFF;
     color: #12191C;
     font-weight: bold;
     

@@ -71,6 +71,7 @@ async function filterD(urlBase, schema, filters = {}, signal=null) {
             newUrl += "&" + element + "=" + filters[element];
         }
     })
+    return newUrl
     let data = await request(newUrl,signal)
     return data
 }
