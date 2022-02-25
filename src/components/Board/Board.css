@@ -1,14 +1,15 @@
-.menu{
+.menu {
     display: flex;
     flex-wrap: wrap;
 }
-.menu .menu--page{
+
+.menu .menu--page {
     display: flex;
     flex-direction: column;
     background-color: #e6ddce;
-    border: 10px groove rgba(192,178,169,1);
+    border: 10px groove rgba(192, 178, 169, 1);
     margin: 1.5rem;
-    border-radius: 15px; 
+    border-radius: 15px;
     padding-bottom: 1rem;
 }
 
@@ -16,103 +17,110 @@
 .information--location .menu .menu--page {
     background: #161d20;
     border-color: #00eeff71;
-    color:rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
 }
 
 
-.menu--page h2{
+.menu--page h2 {
     border-radius: 20px;
     margin: 1.5rem;
     display: inline-block;
     text-align: center;
     background-color: #c8c0af;
 }
-.information--location .menu--page h2{
+
+.information--location .menu--page h2 {
     background-color: inherit;
 }
 
-.menu__imputs{
+.menu__imputs {
     margin: 0 1.5rem 1.5rem;
     display: flex;
     flex-wrap: wrap;
 }
 
-.board{
+.board {
     margin: 1rem auto;
     width: 80%;
 }
-.data{
+
+.data {
 
     padding: 2rem;
     padding-bottom: 0;
     border: 10px groove #e4d79c;
     border-radius: 20px;
-    background: rgb(78,103,104);
-    background: linear-gradient(180deg, rgba(78,103,104,1) 2%, rgba(82,101,107,1) 21%, rgba(76,123,112,1) 57%, rgba(73,124,120,1) 74%,  rgb(100 158 150) 93%);
+    background: rgb(78, 103, 104);
+    background: linear-gradient(180deg, rgba(78, 103, 104, 1) 2%, rgba(82, 101, 107, 1) 21%, rgba(76, 123, 112, 1) 57%, rgba(73, 124, 120, 1) 74%, rgb(100 158 150) 93%);
 }
-.information--location .data{
+
+.information--location .data {
     border: 10px groove #85858571;
-    background: rgb(18,25,28);
-    background: linear-gradient(180deg, rgba(18,25,28,1) 41%, rgba(4,46,62,1) 73%, rgba(5,68,92,1) 97%);
+    background: rgb(18, 25, 28);
+    background: linear-gradient(180deg, rgba(18, 25, 28, 1) 41%, rgba(4, 46, 62, 1) 73%, rgba(5, 68, 92, 1) 97%);
 
 }
 
-.data h2{
+.data h2 {
     text-align: center;
     margin: 1rem 0;
-    color:rgb(253, 253, 253) ;
+    color: rgb(253, 253, 253);
 }
-.board .data table{
+
+.board .data table {
     margin: 0 auto;
     border: rgb(255, 255, 255) 5px solid;
     border-radius: 20px;
     padding-bottom: 1.2rem;
-    border-bottom: 10px groove rgba(0,239,255,1);
+    border-bottom: 10px groove rgba(0, 239, 255, 1);
     background: -webkit-linear-gradient(#eee, rgb(255, 255, 255));
     -size: 1.2rem;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-.board .data table td{
+
+.board .data table td {
     border: rgb(253, 253, 253) 2px solid;
     padding: 5px;
     -weight: bold;
 }
-thead{
+
+thead {
     text-align: left;
     -weight: bolder;
 }
 
-.content__btn{
+.content__btn {
     width: 60%;
 }
-.btn--sello{
+
+.btn--sello {
     -size: 1.2rem;
     outline: none;
     border-radius: 30px;
-    display:inline-block;
+    display: inline-block;
     padding: 1rem;
     border: rgb(112, 7, 7) 2px double;
     cursor: pointer;
 }
 
-.none{
+.none {
     display: none;
 }
 
-.reset .btn--sello{
- margin: 0 auto;
+.reset .btn--sello {
+    margin: 0 auto;
 }
 
-.container__btn{
+.container__btn {
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 }
 
 
 
-input{
+input {
     width: 200px;
     height: 20px;
     padding: 0 15px;
@@ -122,15 +130,15 @@ input{
     border-radius: 50px;
     color: black;
     text-align: center;
-    font-size: 0,9rem;
+    font-size: 0, 9rem;
 
 }
 
-input:focus{
-    box-shadow: 0px 0px 30px 2px  #85858571;
+input:focus {
+    box-shadow: 0px 0px 30px 2px #85858571;
 }
 
-select{
+select {
     width: 200px;
     height: 20px;
     padding: 0 15px;
@@ -140,13 +148,65 @@ select{
     border-radius: 50px;
     color: black;
     text-align: center;
-    font-size: 0,9rem;
+    font-size: 0, 9rem;
     cursor: pointer;
 }
 
 @media (max-width: 992px) {
-    .data{
+    .data {
         overflow-y: scroll;
         overflow-x: scroll;
     }
+}
+
+/*Loading ico*/
+
+
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+    0% {
+        top: 8px;
+        height: 64px;
+    }
+
+    50%, 100% {
+        top: 24px;
+        height: 32px;
+    }
+}
+
+.board div.center-container{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }

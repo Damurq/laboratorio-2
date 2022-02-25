@@ -14,7 +14,7 @@ import "./Board.css"
  * clicks a button
  * @param {string} selector Query selector
  */
-    function clicFirstPage(selector){
+function clicFirstPage(selector) {
     let btn = document.querySelector(selector)
     if (btn) {
         btn.click();
@@ -27,7 +27,7 @@ import "./Board.css"
  * @param {Array} filterList List of attributes to remove from the object
  * @returns new object
  */
-    function filterObject(obj, filterList) {
+function filterObject(obj, filterList) {
     let objData = {}
     Object.keys(obj).forEach((v) => {
         if (!(filterList.includes(obj[v]))) {
@@ -40,9 +40,10 @@ import "./Board.css"
 const Board = ({ schema }) => {
     // Variables
     const menu = filterData[schema]["menu"]                         // Object that contains the search, sort and filter menus of each scheme
-    const URL_BASE = "https://rickandmortyapi.com/api/"+schema      // API URL
+    const URL_BASE = "https://rickandmortyapi.com/api/" + schema      // API URL
     // States
     const [data, setData] = useState([])                    // Data to show in the current table
+    const [loading, setloading] = useState(true)
     const [input, setinput] = useState("")                  // Lookup input value
     const [value, setValue] = useState({
         order: objSelect("order"), filter: objSelect("filter")
@@ -93,7 +94,7 @@ const Board = ({ schema }) => {
     /**
      * Sort the data alphabetically
      */
-    function orderDataDisplay(){
+    function orderDataDisplay() {
         if ((value["order"]["name"] === "A-Z") || (value["order"]["name"] === "Z-A")) {
             if (totalData.length === 0) {
                 getAll("https://rickandmortyapi.com/api/", schema, filterData[schema]["data"]).then((res) => {
@@ -102,7 +103,7 @@ const Board = ({ schema }) => {
             } else {
                 let result = []
                 result = totalData.sort(sorted)
-                totalData.length <= pageLimit ? setData(result.map((i)=>i)) : setTotalData(result)
+                totalData.length <= pageLimit ? setData(result.map((i) => i)) : setTotalData(result)
                 clicFirstPage('button.page-link')
             }
         }
@@ -113,21 +114,21 @@ const Board = ({ schema }) => {
      */
     function filterDataDisplay() {
         let filters = filterObject(value["filter"], ["Selececione una opción"])
-            if (totalData.length === 0) {
-                filterD("https://rickandmortyapi.com/api/", schema, filters).then((res) => {
-                    getAll(res, "", filterData[schema]["data"]).then((r) => {
-                        r.length!==0 ? setTotalData(r) : setData(r)
-                    })
+        if (totalData.length === 0) {
+            filterD("https://rickandmortyapi.com/api/", schema, filters).then((res) => {
+                getAll(res, "", filterData[schema]["data"]).then((r) => {
+                    r.length !== 0 ? setTotalData(r) : setData(r)
                 })
-            } else {
-                let result = []
-                Object.keys(filters).forEach((lab, index) => {
-                    result = index === 0
-                        ? totalData.filter(element => element[lab] === value["filter"][lab])
-                        : result.filter(element => element[lab] === value["filter"][lab])
-                })
-                result.length!==0 ? setTotalData(result) : setData(result)
-            }
+            })
+        } else {
+            let result = []
+            Object.keys(filters).forEach((lab, index) => {
+                result = index === 0
+                    ? totalData.filter(element => element[lab] === value["filter"][lab])
+                    : result.filter(element => element[lab] === value["filter"][lab])
+            })
+            result.length !== 0 ? setTotalData(result) : setData(result)
+        }
     }
 
     /**
@@ -137,13 +138,13 @@ const Board = ({ schema }) => {
         if (totalData.length === 0) {
             filterD("https://rickandmortyapi.com/api/", schema, { name: input }).then((res) => {
                 getAll(res, "", filterData[schema]["data"]).then((r) => {
-                    r.length!==0 ? setTotalData(r) : setData(r)
+                    r.length !== 0 ? setTotalData(r) : setData(r)
                 })
             })
-        } 
+        }
         else {
             let result = totalData.filter(element => element["name"].toLowerCase().includes(input.toLowerCase()))
-            result.length!==0 ? setTotalData(result) : setData(result)
+            result.length !== 0 ? setTotalData(result) : setData(result)
         }
     }
 
@@ -154,6 +155,7 @@ const Board = ({ schema }) => {
     function dataModification(event) {
         event.preventDefault()
         const className = event.target.className;
+        setloading(true)
         if (className.includes("order")) {
             orderDataDisplay()
         }
@@ -163,6 +165,7 @@ const Board = ({ schema }) => {
         else if (className.includes("search")) {
             searchDataDisplay()
         }
+        setloading(false)
     }
 
     /**
@@ -207,9 +210,9 @@ const Board = ({ schema }) => {
                     }
                 })
         } else {
-            const offset = (dt.currentPage - 1) * pageLimit;
+            const offset = (dt.currentPage - 1) * dt.pageLimit;
             setTotalRecords(totalData.length);
-            setData(totalData.slice(offset, offset + pageLimit));
+            setData(totalData.slice(offset, offset + dt.pageLimit));
             setCurrentPage(dt.currentPage);
         }
     }
@@ -228,6 +231,7 @@ const Board = ({ schema }) => {
                             setPageLimit(response.results.length);
                             let fdt = filterDataObjectList(filterData[schema]["data"], response.results);
                             setData(fdt);
+                            setloading(false)
                         }
                     })
             }
@@ -242,7 +246,7 @@ const Board = ({ schema }) => {
             // Update the table
             clicFirstPage('button.page-link')
         }
-    }, [totalData,schema,URL_BASE]);
+    }, [totalData, schema, URL_BASE]);
 
 
     return (
@@ -279,43 +283,45 @@ const Board = ({ schema }) => {
                 <button className="btn--sello" onClick={() => { setTotalData([]) }}>Reiniciar Busqueda</button>
             </div>
             <div id="board" className="board">
-                {data.length > 0 ?
-                    (<React.Fragment>
-                        <div className="data">
-                            <h2>{schema.charAt(0).toUpperCase() + schema.slice(1) + "s"}</h2>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        {Object.keys(data[0]).map((val, i) => {
+                <div className="data">
+                    <h2>{schema.charAt(0).toUpperCase() + schema.slice(1) + "s"}</h2>
+                    {loading
+                        ? <div className="center-container"><div class="lds-facebook"><div></div><div></div><div></div></div></div>
+                        : data.length > 0
+                            ? (<React.Fragment>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            {Object.keys(data[0]).map((val, i) => {
+                                                return (
+                                                    <th key={val + "--" + i}>{val}</th>
+                                                )
+                                            })}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {data.map((obj) => {
                                             return (
-                                                <th key={val + "--" + i}>{val}</th>
+                                                <tr key={"obj--" + obj.id}>
+                                                    {Object.keys(obj).map((camp, ndx2) => {
+                                                        return (<td key={"camp--" + ndx2 + camp + obj.id}>{obj[camp]}</td>)
+                                                    })}
+                                                </tr>
                                             )
                                         })}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {data.map((obj) => {
-                                        return (
-                                            <tr key={"obj--" + obj.id}>
-                                                {Object.keys(obj).map((camp, ndx2) => {
-                                                    return (<td key={"camp--" + ndx2 + camp + obj.id}>{obj[camp]}</td>)
-                                                })}
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="">
-                            <div id="totalRecords" className="none" name={totalRecords} >{totalRecords}</div>
+                                    </tbody>
+                                </table>
+                                <div className="">
+                                    <div id="totalRecords" className="none" name={totalRecords} >{totalRecords}</div>
 
-                            {totalRecords > 20 ?
-                                <Pagination totalRecords={totalRecords} pageLimit={pageLimit} pageNeighbours={1} onPageChanged={onPageChanged} />
-                                : <p></p>
-                            }
-                        </div>
-                    </React.Fragment>)
-                    : <p className="error">NOT FOUND - 404</p>}
+                                    {totalRecords > 20 ?
+                                        <Pagination totalRecords={totalRecords} pageLimit={pageLimit} pageNeighbours={1} onPageChanged={onPageChanged} />
+                                        : <p></p>
+                                    }
+                                </div>
+                            </React.Fragment>)
+                            : <p className="error">NOT DATA</p>}
+                </div>
             </div>
         </div>
     );
