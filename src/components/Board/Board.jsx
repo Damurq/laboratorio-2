@@ -251,7 +251,7 @@ const Board = ({ schema }) => {
 
     return (
         <div>
-            <div className="menu">
+            <div className={`menu-billboard menu-billboard--${schema}`}>
                 {Object.keys(menu).map((key) => {
                     return (
                         <form key={"form--" + key} className="menu--page">

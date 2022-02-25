@@ -8,7 +8,7 @@ const Information = () => {
     let path = location.pathname.replace("/","")    
     
     return (
-        <div className={"information "+"information--"+path }>
+        <div className={`information information--${path}`}>
             <Board schema={path} />
         </div>
     )
