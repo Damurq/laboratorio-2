@@ -64,7 +64,7 @@ function filterDataObjectList(labels, data) {
 async function filterD(urlBase, schema, filters = {}, signal=null) {
     let newUrl = urlBase + schema
     Object.keys(filters).forEach((element, index) => {
-        if (index == 0) {
+        if (index === 0) {
             newUrl += "/?" + element + "=" + filters[element];
         }
         else {
@@ -72,8 +72,6 @@ async function filterD(urlBase, schema, filters = {}, signal=null) {
         }
     })
     return newUrl
-    let data = await request(newUrl,signal)
-    return data
 }
 
 /**
@@ -87,7 +85,7 @@ async function filterD(urlBase, schema, filters = {}, signal=null) {
  * @param {object | null} signal :  objeto con una instancia de AbourtController 
  * @returns {list} Lista de resultados
  */
-async function getAll(urlBase = "", schema = "", labels, chart = false, signal=null) {
+async function getAll(urlBase = "", schema = "", labels, signal=null) {
     let info = []
     let next = typeof urlBase === "string" ? urlBase + schema : null
     while (next !== null) {
@@ -95,16 +93,53 @@ async function getAll(urlBase = "", schema = "", labels, chart = false, signal=n
         next = data.info.next
         info.push(...filterDataObjectList(labels, data.results));
     }
-    if (chart){
-        let dta = info.map((d)=>d[labels])
-        return dta
-    }
     return info;
 }
 
+/**
+ * 
+ * @param {*} urlBase 
+ * @param {*} schema 
+ * @param {*} label 
+ * @param {*} optionsLabel 
+ * @param {*} signal 
+ * @returns 
+ */
+async function chartData(urlBase = "", schema = "", label , signal=null) {
+    // get all records of the API
+    let data = await getAll(urlBase,schema,[label],signal)
+    // Create an Array the size of the optionsLabel and fill with zeros
+    let temporalData = []
+    let optionsLabel = []
+    data.forEach((val) => {
+        if (optionsLabel.indexOf(val[label])===-1){
+            optionsLabel.push(val[label]);
+            temporalData.push(1)
+        }
+        else{
+            temporalData[optionsLabel.indexOf(val[label])]++;
+        }
+    });
+    return [optionsLabel,temporalData]
+}
+
+async function optionsLabel(urlBase = "", schema = "", label , signal=null) {
+    // get all records of the API
+    let data = await getAll(urlBase,schema,[label],signal)
+    let result = []
+    data.forEach((item,index)=>{
+        if (result.indexOf(item[label])===-1){
+            result.push(item[label])
+        }
+    })
+    return result
+}
+
 module.exports = {
-    request,
+    chartData,
     filterD,
+    filterDataObjectList,
     getAll,
-    filterDataObjectList
+    optionsLabel,
+    request,
 }

@@ -1,60 +1,61 @@
+// React
 import { Link, useLocation, useHistory } from "react-router-dom"
 import { useEffect } from "react"
+// CSS & JSON
 import "./Navbar.css";
 import db from "../../data/data"
 
 const Navbar = () => {
-    //Desclaracion de los Hook
+    // Declaration of the Hooks
     const history = useHistory();
     let location = useLocation();
+    // img
     const logo = "Navbar/Logo.png"
-    //Archivo JSON donde se encuentra la informacion del componente
+    // JSON file where the component information is located
     const navbar = db.components.Navbar
-
-    //Clase que tendran los li de la barra de navegacion
+    // Class that the li of the navigation bar will have
     const liClass = "menu-options__element theme--original"
 
-    /* Función encargada de redirigir en caso de hacer click en una etiqueta "a" con href "#" */
+    /**
+     * Redirect in case of clicking on a tag "a" with href "#"
+     * @param {object} e evento
+     */
     function clickHandler(e) {
-        //redirigimos al inicio
         if (!(location.pathname === "/")) {
             history.push("/");
         }
         e.preventDefault();
-        //Obtenemos la altura superior del elemento
-        //setTimeout() 
+        // Get the top height of the element
         const href = this.getAttribute("href");
-        
         const offsetTop = document.querySelector(href) ? document.querySelector(href).offsetTop : 0;
-        //hacemos que se desplace al elemento de forma suave
+        // Make the element scroll smoothly
         window.scroll({
             top: offsetTop - 50,
             behavior: "smooth"
         });
-        //En caso de que sea una pantalla con menu desplegable hacemos que el menu se recoja
-
+        // If it is a screen with a drop-down menu, we make the menu appear
         const menuOptions = document.querySelector(".menu-options")
         if (menuOptions.classList.contains('menu-options-list-dropdown--enable')) {
             handleClick();
         }
     }
 
-    /* Función encargada de subir el scroll cuando se renderiza una pagina */
+    /**
+     * Function in charge of raising the scroll when a page is rendered
+     * @param {*} e 
+     */
     function clickHandlerRender(e) {
         window.scroll({
             top: 0,
             behavior: "smooth"
         });
-        //En caso de que sea una pantalla con menu desplegable hacemos que el menu se recoja
+        // If it is a screen with a drop-down menu, we make the menu appear
         const menuOptions = document.querySelector(".menu-options")
         if (menuOptions.classList.contains('menu-options-list-dropdown--enable')) {
             handleClick();
         }
     }
 
-    /*  - Añadimos el evento click a todos los link y asignamos la funcion correspondiente
-        - Comprobamos la ubicacion de la pagina para el color del navbar
-    */
     useEffect(() => {
         const links = document.querySelectorAll('a[href^="#"]');
         const linksRender = document.querySelectorAll('a[href^="/"]');
@@ -66,8 +67,9 @@ const Navbar = () => {
         }
     },[location]);
 
-
-    //Controla el menu desplegable
+    /**
+     * Check the dropdown menu
+     */
     const handleClick = () => {
         const menuOptions = document.querySelector(".menu-options")
         menuOptions.classList.toggle("menu-options-list-dropdown--disable");
@@ -88,7 +90,7 @@ const Navbar = () => {
                         </div>
                     </button>
                     <div className="logo">
-                        Rick y Morty
+                        Rick & Morty
                     </div>
                 </div>
             </div>

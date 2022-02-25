@@ -43,7 +43,7 @@ const Board = ({ schema }) => {
     const URL_BASE = "https://rickandmortyapi.com/api/" + schema      // API URL
     // States
     const [data, setData] = useState([])                    // Data to show in the current table
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(true)            // Loading states
     const [input, setinput] = useState("")                  // Lookup input value
     const [value, setValue] = useState({
         order: objSelect("order"), filter: objSelect("filter")
@@ -286,7 +286,7 @@ const Board = ({ schema }) => {
                 <div className="data">
                     <h2>{schema.charAt(0).toUpperCase() + schema.slice(1) + "s"}</h2>
                     {loading
-                        ? <div className="center-container"><div class="lds-facebook"><div></div><div></div><div></div></div></div>
+                        ? <div className="center-container"><div className="lds-facebook"><div></div><div></div><div></div></div></div>
                         : data.length > 0
                             ? (<React.Fragment>
                                 <table>

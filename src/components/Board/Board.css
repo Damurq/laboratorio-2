@@ -205,7 +205,8 @@ select {
     }
 }
 
-.board div.center-container{
+/* Cente a div*/
+div.center-container{
     margin: 0 auto;
     display: flex;
     justify-content: center;

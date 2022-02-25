@@ -29,17 +29,17 @@
         "Card":{
             "character":{
                 "title":"Character",
-                "text":"Aquí encontrarás a todos los personajes conocidos hasta la fecha de la serie.",
+                "text":"Here you will find all the characters known to date from the series.",
                 "imgsrc":"Home/1.png"
             },
             "location":{
                 "title":"Location",
-                "text":"Todos los lugares que se muestran en la serie.",
+                "text":"All locations shown in the series.",
                 "imgsrc":"Home/2.jpg"
             },
             "episode":{
                 "title":"Episode",
-                "text":"Todos los episodios de la serie.",
+                "text":"All episodes of the series.",
                 "imgsrc":"Home/3.jpg"
             }
         },
@@ -47,15 +47,13 @@
             "character":{
                 "description":"Number of characters for each species",
                 "label":{
-                    "name":"species",
-                    "options":["Human", "Alien", "Humanoid", "unknown", "Poopybutthole", "Mythological Creature", "Animal", "Robot", "Cronenberg", "Disease", "Planet"]
+                    "name":"species"
                 }
             },
             "location":{
                 "description":"Number of places by type",
                 "label":{
-                    "name":"type",
-                    "options":["Planet", "Cluster", "Space station", "Microverse", "TV", "Resort", "Fantasy town", "Dream", "Dimension", "unknown", "Menagerie", "Game", "Customs", "Daycare", "Dwarf planet (Celestial Dwarf)", "Miniverse", "Teenyverse", "Box", "Spacecraft", "Artificially generated world", "Machine", "Arcade", "Spa", "Quadrant", "Quasar", "Mount", "Liquid", "Convention", "Woods", "Diegesis", "Non-Diegetic Alternative Reality", "Nightmare", "Asteroid", "Acid Plant", "Reality", "Death Star", "Base"]
+                    "name":"type"
                 }
             }
         }

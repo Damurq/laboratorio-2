@@ -25,13 +25,13 @@ const range = (from, to, step = 1) => {
 class Pagination extends Component {    
     /**
     *---PROPS
-    * totalRecords      indica el número total de registros que se paginarán. Es obligatorio.
-    * pageLimit         indica el número de registros que se mostrarán por página. Si no se especifica, vuelve al valor predeterminado
-    * pageNeighbours    indica el número de números de páginas adicionales para mostrar en cada lado de la página actual. El valor mínimo es 0 y el valor máximo es 2. Si no se especifica, vuelve al valor 0
-    * totalPages
+    * totalRecords indicates the total number of records to be paged. Mandatory.
+    * pageLimit indicates the number of records displayed per page. If not specified, reverts to default
+    * pageNeighbours indicates the number of additional pages to display on each side of the current page. The minimum value is 0 and the maximum value is 2. If not specified, it returns to the value 0
+    * total pages
     *
     *---STATES
-    * currentPage       Página actual
+    * currentPage       Current pages
      */
     constructor(props) {
         super(props);
@@ -43,7 +43,6 @@ class Pagination extends Component {
         ? Math.max(0, Math.min(pageNeighbours, 2))
         : 0;
         this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
-        //totalRecords = document.getElementById("totalRecords") ? parseInt(document.getElementById("totalRecords").name) : 0
         this.state = { currentPage: 1 };
     }
   /**

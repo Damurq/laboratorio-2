@@ -1,9 +1,15 @@
+import { faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+
 import { Link } from "react-router-dom"
 import db from "../../data/data"
 import "./Footer.css"
+import CardIcon from "../CardIcon/CardIcon"
 
 
 const Footer = () => {
+    library.add(faPhoneAlt,faEnvelope)
     const navbar = db.components.Navbar
     const liClass = "menu-options__element menu-options__element--footer "
     return (
@@ -17,40 +23,27 @@ const Footer = () => {
                 </ul>
             </div>
             <div className="footerSection--SocialMedia">
-                <h3 className="text--center">Follow us!</h3>
-                <div className="row">
-                    <img src="footer/facebook.png"></img>
-                    <label>Follow us on Facebook</label>
-                </div>
-                <div className="row">
-                    <img src="footer/instagram.png"></img>
-                    <label>Follow us on Instagram</label>
-                </div>
-                <div className="row">
-                    <img src="footer/twitter.png"></img>
-                    <label>Follow us on Twitter</label>
-                </div>
+                <h3 className="text--center">Social Media</h3>
+                <CardIcon />
             </div>
             <div className="footerSection--contact">
                     <div  >
-                        <h3  className="text--center">Team</h3>
-                        <div className="row">
-                            <img src="team/girl.png"></img>
-                            <label>Yurisbellys Brizuela</label>
-                        </div>
-                        <div className="row">
-                            <img src="team/boy.png"></img>
-                            <label>Michael Montero</label>
-                        </div>
-                        <div className="row">
-                            <img src="team/girl.png"></img>
-                            <label>Marihec Miranda</label>
-                        </div>
+                        <h3  >
+                            <FontAwesomeIcon className="icon" icon={['fas', 'envelope']}/> 
+                            michaeldamurq@gmail.com
+                        </h3>
+                    </div>
+                    <div  >
+                        <h3  >
+                            <FontAwesomeIcon className="icon" icon={['fas', 'phone-alt']}/> 
+                            +58 416 654 16 76
+                        </h3>
                     </div>
             </div>
         </div>
+
         <div  >
-            <h3 className="mini-title-2 text--center text-dark">Copyright El mejor equipo de Laboratorio 2 2021-Todos los derechos reservados</h3>
+            <h3 className="mini-title-2 text--center text-dark">Personal Project - Rick & Morty API</h3>
         </div>
     </footer>);
 }

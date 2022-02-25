@@ -1,72 +1,57 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2';
-import db from "../../data/filterData.json"
-import { getAll } from '../../utils/fetch/searchData'
+import { chartData } from '../../utils/fetch/searchData'
 
-const Chart = ({section , label, optionsLabel}) => {
-    const urlBase = "https://rickandmortyapi.com/api/"
+// API URL
+const URL_BASE = "https://rickandmortyapi.com/api/" 
+// options of the bar graph
+const options = {
+    maintainAspectRatio: false,
+    responsive: true
+}
+// Base object of the bar graph data
+let dataEmpty = {
+    labels: [],
+    datasets: [{
+        label: "",
+        backgroundColor: "rgba(0,255,0,1)",
+        borderColor: "black",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(0,255,0,2)",
+        hoverBorderColor: '#FF0000',
+        data: []
+    }]
+}
 
-    let dataEmpty ={
-        labels: [],
-        datasets:[{
-            label:"",
-            backgroundColor:"rgba(0,255,0,1)",
-            borderColor:"black",
-            borderWidth:1,
-            hoverBackgroundColor:"rgba(0,255,0,2)",
-            hoverBorderColor: '#FF0000',
-            data:[]
-        }]
-    }
+const Chart = ({ section, label }) => {
+
+    // States
     const [values, setValues] = useState(dataEmpty)
-    const [change, setChange] = useState(false)
-
-    let rawLabels = db[section].data
-
-
-    const options = {
-        maintainAspectRatio:false,
-        responsive:true
-    }
-
-
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if (values.datasets[0].data.length===0) {
-            let data = dataEmpty
-            let temporalData = []
-            getAll(urlBase,section,[label],true)
-                .then((response) => {
-                    data.labels = optionsLabel
+        if (values.datasets[0].data.length === 0) {
+            let data = {...dataEmpty}
+            chartData(URL_BASE, section, label)
+                .then((res) => {
+                    data.labels = res[0]
                     data.datasets[0].label = label
-                    optionsLabel.forEach(() => {
-                        temporalData.push(0)
-                    });
-                    response.forEach( (val)=> {
-                        if (optionsLabel.includes(val)) {
-                            if (optionsLabel.length===temporalData.length) {
-                                temporalData[optionsLabel.indexOf(val)]++;
-                            }
-                        }
-                    });
-                    data.datasets[0].data = temporalData
+                    data.datasets[0].data = res[1]
                     setValues(data)
-                    setChange(true)
-               })
-            }
-
+                    setLoading(false)
+                })
+        }
     }, [])
-
-
 
     return (
         <div className="theme--2 chart">
-            {change
-            ? 
-            (<div style={{width:"100%", height:"500px"}}>
-                <Bar data={values} options={options}/>
-            </div>)
-            : <p>Generando...Esto puede demorar espere un momento.</p>}
+            {loading
+                ? <div className="center-container"><div className="lds-facebook"><div></div><div></div><div></div></div></div>
+                : (<div style={{ width: "100%", height: "500px" }}>
+                    {values 
+                    ? <Bar data={values} options={options} />
+                    : Error - 404}
+                </div>)}
         </div>
     )
 }

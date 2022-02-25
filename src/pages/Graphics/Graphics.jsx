@@ -1,6 +1,10 @@
+// React
 import React from 'react'
+// JSON
 import db from "../../data/data.json"
+// Components
 import Chart from '../../components/Chart/Chart'
+
 
 const Graphics = () => {
     const data = db.components["Chart"]
@@ -23,7 +27,7 @@ const Graphics = () => {
                             </p>
                         </div>
                         <div className="">
-                            <Chart section={section} label={data[section].label.name} optionsLabel={data[section].label.options} />
+                            <Chart section={section} label={data[section].label.name} />
                         </div>
                     </div>)
             })}   
