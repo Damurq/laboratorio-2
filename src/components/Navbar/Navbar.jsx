@@ -1,12 +1,13 @@
 // React
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useHistory } from "react-router-dom"
-import { useEffect } from "react"
 // CSS & JSON
 import "./Navbar.css";
 import db from "../../data/data"
 
 const Navbar = () => {
     // Declaration of the Hooks
+    const [open, setOpen] = useState(false)
     const history = useHistory();
     let location = useLocation();
     // img
@@ -21,10 +22,10 @@ const Navbar = () => {
      * @param {object} e evento
      */
     function clickHandler(e) {
+        e.preventDefault();
         if (!(location.pathname === "/")) {
             history.push("/");
         }
-        e.preventDefault();
         // Get the top height of the element
         const href = this.getAttribute("href");
         const offsetTop = document.querySelector(href) ? document.querySelector(href).offsetTop : 0;
@@ -36,7 +37,7 @@ const Navbar = () => {
         // If it is a screen with a drop-down menu, we make the menu appear
         const menuOptions = document.querySelector(".menu-options")
         if (menuOptions.classList.contains('menu-options-list-dropdown--enable')) {
-            handleClick();
+            setOpen(false);
         }
     }
 
@@ -52,7 +53,7 @@ const Navbar = () => {
         // If it is a screen with a drop-down menu, we make the menu appear
         const menuOptions = document.querySelector(".menu-options")
         if (menuOptions.classList.contains('menu-options-list-dropdown--enable')) {
-            handleClick();
+            setOpen(false);
         }
     }
 
@@ -67,39 +68,26 @@ const Navbar = () => {
         }
     },[location]);
 
-    /**
-     * Check the dropdown menu
-     */
-    const handleClick = () => {
-        const menuOptions = document.querySelector(".menu-options")
-        menuOptions.classList.toggle("menu-options-list-dropdown--disable");
-        menuOptions.classList.toggle("slide-in-bottom");
-        menuOptions.classList.toggle("menu-options-list-dropdown--enable");
-        document.querySelector("nav").classList.toggle("menu-options-list-dropdown--enable");
-        document.querySelector(".menu--X").classList.toggle("open");
-        document.querySelector("div.logo").classList.toggle("menu-options-list-dropdown--disable");
-    }
-
     return (
-        <header>
+        <header className={`${open ? "header-open" : ""}`} >
             <div className="theme--1 navbar-Container">
                 <div className="navbar">
-                    <button className="dropdown-menu-button" onClick={handleClick}>
-                        <div className="menu menu--X">
+                    <button className="dropdown-menu-button" onClick={() => { setOpen(!open) }}>
+                        <div className={`menu menu--X ${open ? "open" : ""}`}>
                             <span className="menu__bar"></span>
                         </div>
                     </button>
-                    <div className="logo">
+                    <div className={`logo ${open ? "menu-options-list-dropdown--disable" : ""}`}>
                         Rick & Morty
                     </div>
                 </div>
             </div>
-            <nav className="theme--1">
-                <div className="menu-options menu-options-list-dropdown--disable">
+            <nav className={`theme--1 ${open ? "menu-options-list-dropdown--enable" : ""}`}>
+                <div className={`menu-options ${open ? "menu-options-list-dropdown--enable" : "menu-options-list-dropdown--disable"}`}>
                     <div className="logo--dropdown logo">
                         <img src={logo} alt="" className="logo__img" />
                     </div>
-                    <ul className="menu-options-list">
+                    <ul className={`menu-options-list`}>
                         {navbar.map((section, index) => {
                             return section.type === "Link" ? <li key={"nav-li-" + index} ><Link className={liClass} to={section.href}>{section.name}</Link></li> : <li key={"nav-li-" + index}><a className={liClass} href={section.href}>{section.name}</a></li>
                         })}

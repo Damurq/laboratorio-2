@@ -123,48 +123,58 @@ header {
     background-color: inherit;
 }
 
-
 /*media query*/
 
 @media (min-width: 992px) {
     body {
         font-size: 20px;
     }
+
     header nav {
         width: 60%;
     }
+
     header .navbar-Container {
         width: 40%;
         transition: background-color 0.5s ease;
     }
+
     header div.logo--dropdown {
         display: none;
     }
+
     header div.menu-options-list-dropdown--enable {
         flex-direction: row;
     }
+
     header div.menu-options-list-dropdown--enable .open .menu__bar {
         display: none;
     }
+
     .navbar {
         margin: 2rem;
         margin-bottom: 0.5rem;
         margin-left: 3rem;
     }
+
     .menu-options {
         margin: 2rem 0;
         margin-bottom: 0.5rem;
     }
+
     .dropdown-menu-button {
         display: none;
     }
+
     .menu-options-list {
         padding: 0;
         justify-content: center;
     }
+
     .menu-options-list li {
         margin: 0 1.5rem;
     }
+
     .menu-options-list,
     header {
         display: flex;
@@ -181,31 +191,49 @@ header {
     html {
         font-size: 10px;
     }
+
     body {
         font-size: 15px;
     }
+
     nav {
         display: inline-block;
         width: 100%;
     }
+
     header {
         display: flex;
         flex-direction: column;
     }
+
+    .header-open {
+        min-height: 100vh;
+    }
+
     header nav {
         width: 100%;
     }
+
     header .navbar-Container {
         width: 100%;
         transition: background-color 0.5s ease;
     }
+
     header div.menu-options-list-dropdown--enable {
         display: flex;
         flex-direction: column;
     }
+    
     header div.menu-options-list-dropdown--enable ul.menu-options-list {
         margin: 5rem 0;
     }
+
+    header nav.menu-options-list-dropdown--enable {
+        display: flex;
+        align-items: center;
+        min-height: inherit;
+    }
+
     header div.menu-options {
         padding: 3rem 5rem;
         border: 1px solid #ffff;
@@ -216,6 +244,7 @@ header {
         justify-content: center;
         align-items: center;
     }
+
     .navbar {
         margin: 3rem;
         margin-left: 3rem;
@@ -223,9 +252,11 @@ header {
         display: flex;
         justify-content: space-between;
     }
+
     .menu-options-list-dropdown--disable {
         display: none;
     }
+
     .dropdown-menu-button {
         border: none;
         background-color: black;
@@ -233,19 +264,23 @@ header {
         height: 4rem;
         width: 6rem;
     }
+
     .menu-options-list {
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding: 0;
     }
+
     .menu-options-list li {
         margin: 1.5rem auto;
     }
+
     .menu-options__element {
         font-weight: bold;
         transition: font-size 0.5s;
     }
+
     .menu-options__element:hover {
         font-size: 28px;
     }
@@ -255,6 +290,7 @@ header {
     nav.menu-options-list-dropdown--enable {
         min-height: 90vh;
     }
+
     nav.menu-options-list-dropdown--enable div.menu-options {
         margin: 5rem 10rem;
     }
