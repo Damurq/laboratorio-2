@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Bar } from 'react-chartjs-2';
-import { chartData } from '../../utils/fetch/searchData'
+import { chartData } from '../../utils/fetch/searchData.js'
 
 // API URL
 const URL_BASE = "https://rickandmortyapi.com/api/" 
