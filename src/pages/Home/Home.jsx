@@ -4,7 +4,7 @@ import db from "../../data/data"
 import React from 'react'
 
 const Home = ()=>{
-    let photo = "Home/afiche.jpg"
+    let photo = "Home/Afiche.jpg"
     const secions = Object.keys(db.components.Card)
 
     return (
