@@ -135,11 +135,11 @@ async function optionsLabel(urlBase = "", schema = "", label , signal=null) {
     return result
 }
 
-module.export = {
+export {
     chartData,
     filterD,
     filterDataObjectList,
     getAll,
     optionsLabel,
     request,
-}
+};
